@@ -79,6 +79,15 @@ function topicButtons(){
             $(this).attr("data-state", "still");
         }
     };
+
+    $("#add-topic").on("click", function(){
+        var newTopic = $("#new-input").val().trim();
+        if (newTopic){
+            topics.push(newTopic);
+            topicButtons();
+            $("#new-input").val('');
+        }
+    })
       
     topicButtons();
     $(document).on("click", ".gif", playGif);
