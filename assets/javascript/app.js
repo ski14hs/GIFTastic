@@ -22,7 +22,7 @@ function topicButtons(){
         // debugger;
         var topic = $(this).attr("data-topic");
         console.log(topic);
-        var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=9l3fJ5OD1x2cGx4Fz5xFCWfPFie3tkte&tag=" + topic;
+        var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=9l3fJ5OD1x2cGx4Fz5xFCWfPFie3tkte&rating=G&tag=" + topic;
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -37,6 +37,8 @@ function topicButtons(){
             //wil need to grab other urls for animate and still
             var stillURL = response.data.images.original_still.url;
             var animateURL = response.data.images.original.url;
+            var rating = response.data.rating;
+            console.log(response);
 
             // Creating and storing an image tag
             var catDiv = $("<div>").addClass("container")
@@ -56,9 +58,12 @@ function topicButtons(){
             catImage.addClass("gif img-responsive");
 
 
+            catDiv.append(catImage);
+            //can't do random and return rating
+            catDiv.append($("<p>").text("Rating: " + "G"));
 
             // Prepending the catImage to the images div
-            $("#imagesDiv").prepend(catImage);
+            $("#imagesDiv").prepend(catDiv);
         });
     };
 
